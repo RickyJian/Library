@@ -18,6 +18,7 @@ func init() {
 	}
 	v := viper.GetStringMapString("project")
 	projectPath = v["name"]
+	initServer()
 }
 
 func main() {
