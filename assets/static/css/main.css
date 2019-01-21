@@ -1,7 +1,8 @@
 body {
+    background-color: #fbfaf9;
 }
 
-nav , a{
+nav ,nav > a{
     background-color: MediumSeaGreen;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: bold;
@@ -24,4 +25,9 @@ nav button {
     background-color: MediumSeaGreen;
     border-radius: 4px;
     color: #f8f7f4;
+}
+
+.carousel img {
+    height: 440px;
+    object-fit: cover;
 }
