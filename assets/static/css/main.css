@@ -1,0 +1,27 @@
+body {
+}
+
+nav , a{
+    background-color: MediumSeaGreen;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+nav a {
+    position: relative;
+    left: 50px;
+}
+nav form {
+    position: relative;
+    right: 50px;
+}
+
+nav button {
+    border: 1px solid #f8f7f4;
+    font-size: 22px;
+    background-color: MediumSeaGreen;
+    border-radius: 4px;
+    color: #f8f7f4;
+}
