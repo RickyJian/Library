@@ -31,3 +31,29 @@ nav button {
     height: 440px;
     object-fit: cover;
 }
+
+.container{
+    padding-top: 40px;
+    /*height: 100%;*/
+}
+
+.container .row {
+    padding: 10px;
+}
+
+.container img {
+    width: 200px;
+    height: 260px;
+}
+
+.footer {
+    color: #f8f7f4;
+    background-color: MediumSeaGreen;
+    height: 50px;
+    font-size: 20px;
+}
+
+.footer > p {
+    position: relative;
+    top: 8px;
+}

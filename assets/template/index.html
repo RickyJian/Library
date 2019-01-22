@@ -11,6 +11,7 @@
     <title>首頁</title>
 </head>
 <body>
+    {{/* Header */}}
     <nav class="navbar navbar-expand-lg justify-content-between">
         <a class="navbar-brand" href="/library/">
             <img src="/assets/static/image/library.png" width="40" height="40" alt="">
@@ -20,13 +21,14 @@
             <button class="" type="submit">Search</button>
         </form>
     </nav>
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+    {{/* Carousel */}}
+    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+            <li data-target="#carousel" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -54,8 +56,59 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    {{/* Book List*/}}
     <div class = "container">
-
+        <div class = "row">
+            <div class="col-1"></div>
+            <div class="col-3">
+                <img class="rounded" src="/assets/static/image/b1.jpg">
+            </div>
+            <div class="col-7">
+                <h4>精通 Python｜運用簡單的套件進行現代運算 (Introducing Python: Modern Computing in Simple Packages) </h4>
+                <p class = "text-justify">出版商： 歐萊禮 </p>
+                <p class = "text-justify">作者： Bill Lubanovic 著、賴屹民 譯  </p>
+                <p class = "text-justify">售價： $780</p>
+                <p class = "text-justify">簡述：
+                    “本書是 Bill Lubanovic 的傑作，先為你紮下深厚的程式設計基礎，再教你使用大量 Python 工具箱處理現實生活中的問題，本書絕對適合學習如何運用 Python 來解決問題。”
+                </p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class = "row">
+            <div class="col-1"></div>
+            <div class="col-3">
+                <img class="rounded" src="/assets/static/image/b2.jpg">
+            </div>
+            <div class="col-7">
+                <h4>演算法技術手冊, 2/e (Algorithms in a Nutshell: A Practical Guide, 2/e) </h4>
+                <p class = "text-justify">出版商： 歐萊禮 </p>
+                <p class = "text-justify">作者： George T. Heineman等 陳仁和 譯 </p>
+                <p class = "text-justify">售價： $580</p>
+                <p class = "text-justify">簡述：
+                    「這本書有三項值得閱讀的理由：針對書中演算法與資料結構，以視覺化圖表展示其特性；內容以會話方式陳述而不是生硬的學術語調；以及始終不斷強調的演算法效能基準。如果您正處於演算法領域的現實世界中，本書勢必會改變您對資料結構的使用方式。」
+                </p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class = "row">
+            <div class="col-1"></div>
+            <div class="col-3">
+                <img class="rounded" src="/assets/static/image/b3.jpg">
+            </div>
+            <div class="col-7">
+                <h4>JavaScript 大全, 6/e (JavaScript: The Definitive Guide: Activate Your Web Pages, 6/e) </h4>
+                <p class = "text-justify">出版商： 歐萊禮 </p>
+                <p class = "text-justify">作者： David Flanagan 著、黃銘偉 譯 </p>
+                <p class = "text-justify">售價： $1,200</p>
+                <p class = "text-justify">簡述：
+                    這本書是程式設計師指南，也是JavaScript核心語言以及瀏覽器定義的客戶端JavaScript API之綜合參考。
+                </p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <div class = "footer">
+        <p class="text-center">Copyright © 2019 RJBC</p>
     </div>
 </body>
 </html>
