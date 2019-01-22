@@ -12,14 +12,21 @@
 </head>
 <body>
     {{/* Header */}}
-    <nav class="navbar navbar-expand-lg justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/library/">
-            <img src="/assets/static/image/library.png" width="40" height="40" alt="">
+            <img src="/assets/static/image/library.png"  width="160px" height="50px" alt="">
         </a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="" type="submit">Search</button>
-        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class = "collapse navbar-collapse"  id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
     </nav>
     {{/* Carousel */}}
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -47,11 +54,11 @@
                 <img src="/assets/static/image/c5.jpg" class="d-block w-100" alt="...">
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
@@ -59,11 +66,11 @@
     {{/* Book List*/}}
     <div class = "container">
         <div class = "row">
-            <div class="col-1"></div>
-            <div class="col-3">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3 d-flex justify-content-center">
                 <img class="rounded" src="/assets/static/image/b1.jpg">
             </div>
-            <div class="col-7">
+            <div class="col-lg-6">
                 <h4>精通 Python｜運用簡單的套件進行現代運算 (Introducing Python: Modern Computing in Simple Packages) </h4>
                 <p class = "text-justify">出版商： 歐萊禮 </p>
                 <p class = "text-justify">作者： Bill Lubanovic 著、賴屹民 譯  </p>
@@ -72,14 +79,14 @@
                     “本書是 Bill Lubanovic 的傑作，先為你紮下深厚的程式設計基礎，再教你使用大量 Python 工具箱處理現實生活中的問題，本書絕對適合學習如何運用 Python 來解決問題。”
                 </p>
             </div>
-            <div class="col-1"></div>
+            <div class="col-lg-1"></div>
         </div>
         <div class = "row">
-            <div class="col-1"></div>
-            <div class="col-3">
-                <img class="rounded" src="/assets/static/image/b2.jpg">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3 d-flex justify-content-center">
+                <img class="rounded" src="/assets/static/image/b3.jpg">
             </div>
-            <div class="col-7">
+            <div class="col-lg-6">
                 <h4>演算法技術手冊, 2/e (Algorithms in a Nutshell: A Practical Guide, 2/e) </h4>
                 <p class = "text-justify">出版商： 歐萊禮 </p>
                 <p class = "text-justify">作者： George T. Heineman等 陳仁和 譯 </p>
@@ -88,14 +95,14 @@
                     「這本書有三項值得閱讀的理由：針對書中演算法與資料結構，以視覺化圖表展示其特性；內容以會話方式陳述而不是生硬的學術語調；以及始終不斷強調的演算法效能基準。如果您正處於演算法領域的現實世界中，本書勢必會改變您對資料結構的使用方式。」
                 </p>
             </div>
-            <div class="col-1"></div>
+            <div class="col-lg-1"></div>
         </div>
         <div class = "row">
-            <div class="col-1"></div>
-            <div class="col-3">
-                <img class="rounded" src="/assets/static/image/b3.jpg">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3 d-flex justify-content-center">
+                <img class="rounded" src="/assets/static/image/b2.jpg">
             </div>
-            <div class="col-7">
+            <div class="col-lg-6">
                 <h4>JavaScript 大全, 6/e (JavaScript: The Definitive Guide: Activate Your Web Pages, 6/e) </h4>
                 <p class = "text-justify">出版商： 歐萊禮 </p>
                 <p class = "text-justify">作者： David Flanagan 著、黃銘偉 譯 </p>
@@ -104,7 +111,7 @@
                     這本書是程式設計師指南，也是JavaScript核心語言以及瀏覽器定義的客戶端JavaScript API之綜合參考。
                 </p>
             </div>
-            <div class="col-1"></div>
+            <div class="col-lg-1"></div>
         </div>
     </div>
     <div class = "footer">

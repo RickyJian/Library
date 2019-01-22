@@ -10,13 +10,8 @@ nav ,nav > a{
     color: white;
 }
 
-nav a {
-    position: relative;
-    left: 50px;
-}
-nav form {
-    position: relative;
-    right: 50px;
+nav button.navbar-toggler{
+    background-color:#f8f7f4;
 }
 
 nav button {
