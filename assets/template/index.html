@@ -1,25 +1,34 @@
 {{ define "index"}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/static/css/main.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <title>首頁</title>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/static/css/main.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                crossorigin="anonymous"></script>
+        <title>首頁</title>
+    </head>
+    <body>
     {{/* Header */}}
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/library/">
-            <img src="/assets/static/image/library.png"  width="160px" height="50px" alt="">
+            <img src="/assets/static/image/library.png" width="160px" height="50px" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class = "collapse navbar-collapse"  id="navbarTogglerDemo02">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -64,59 +73,29 @@
         </a>
     </div>
     {{/* Book List*/}}
-    <div class = "container">
-        <div class = "row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 d-flex justify-content-center">
-                <img class="rounded" src="/assets/static/image/b1.jpg">
+    <div class="container">
+        {{ range  $book := .bookList}}
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3 d-flex justify-content-center">
+                    <img class="rounded" src="{{$book.Image}}">
+                </div>
+                <div class="col-lg-6">
+                    <h4>{{$book.Name}}</h4>
+                    <p class="text-justify">出版商：{{$book.Publication}}</p>
+                    <p class="text-justify">作者：{{$book.Author}}</p>
+                    <p class="text-justify">售價： ${{$book.Price}}</p>
+                    <p class="text-justify">簡述：
+                        {{$book.Content}}
+                    </p>
+                </div>
+                <div class="col-lg-1"></div>
             </div>
-            <div class="col-lg-6">
-                <h4>精通 Python｜運用簡單的套件進行現代運算 (Introducing Python: Modern Computing in Simple Packages) </h4>
-                <p class = "text-justify">出版商： 歐萊禮 </p>
-                <p class = "text-justify">作者： Bill Lubanovic 著、賴屹民 譯  </p>
-                <p class = "text-justify">售價： $780</p>
-                <p class = "text-justify">簡述：
-                    “本書是 Bill Lubanovic 的傑作，先為你紮下深厚的程式設計基礎，再教你使用大量 Python 工具箱處理現實生活中的問題，本書絕對適合學習如何運用 Python 來解決問題。”
-                </p>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-        <div class = "row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 d-flex justify-content-center">
-                <img class="rounded" src="/assets/static/image/b3.jpg">
-            </div>
-            <div class="col-lg-6">
-                <h4>演算法技術手冊, 2/e (Algorithms in a Nutshell: A Practical Guide, 2/e) </h4>
-                <p class = "text-justify">出版商： 歐萊禮 </p>
-                <p class = "text-justify">作者： George T. Heineman等 陳仁和 譯 </p>
-                <p class = "text-justify">售價： $580</p>
-                <p class = "text-justify">簡述：
-                    「這本書有三項值得閱讀的理由：針對書中演算法與資料結構，以視覺化圖表展示其特性；內容以會話方式陳述而不是生硬的學術語調；以及始終不斷強調的演算法效能基準。如果您正處於演算法領域的現實世界中，本書勢必會改變您對資料結構的使用方式。」
-                </p>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-        <div class = "row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 d-flex justify-content-center">
-                <img class="rounded" src="/assets/static/image/b2.jpg">
-            </div>
-            <div class="col-lg-6">
-                <h4>JavaScript 大全, 6/e (JavaScript: The Definitive Guide: Activate Your Web Pages, 6/e) </h4>
-                <p class = "text-justify">出版商： 歐萊禮 </p>
-                <p class = "text-justify">作者： David Flanagan 著、黃銘偉 譯 </p>
-                <p class = "text-justify">售價： $1,200</p>
-                <p class = "text-justify">簡述：
-                    這本書是程式設計師指南，也是JavaScript核心語言以及瀏覽器定義的客戶端JavaScript API之綜合參考。
-                </p>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
+        {{ end }}
     </div>
-    <div class = "footer">
-        <p class="text-center">Copyright © 2019 RJBC</p>
+    <div class="footer">
+        <p class="text-center">Copyright © 2019 RJBC </p>
     </div>
-</body>
-</html>
+    </body>
+    </html>
 {{ end }}
