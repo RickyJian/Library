@@ -8,6 +8,7 @@ import (
 )
 
 var b *controller.Book
+var i *controller.Index
 
 func initServer() {
 	router := gin.Default()
@@ -15,11 +16,7 @@ func initServer() {
 	router.SetHTMLTemplate(t)
 	router.StaticFS("/assets/static/",http.Dir("assets/static/"))
 	router.StaticFile("/favicon.ico", "assets/favicon.ico")
-	router.GET(projectPath+"/", index)
+	router.GET(projectPath+"/", i.Get)
 	router.Run()
 }
 
-func index (c *gin.Context){
-	c.HTML(http.StatusOK, "index", gin.H{
-	})
-}
