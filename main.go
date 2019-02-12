@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/spf13/viper"
 )
 
@@ -16,8 +17,9 @@ func init() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	v := viper.GetStringMapString("project")
-	projectPath = v["name"]
+	p := viper.GetStringMapString("project")
+	projectPath = p["name"]
+	initDatabase()
 	initServer()
 }
 
