@@ -9,8 +9,8 @@ type Book struct{
 
 }
 
-func (b *Book)Index(c *gin.Context) {
-	c.HTML(http.StatusOK,"book/index.html",gin.H{
+func (b *Book)New(c *gin.Context) {
+	c.HTML(http.StatusOK,"book/new.html",gin.H{
 		"title":"首頁",
 	})
 }
