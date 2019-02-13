@@ -17,6 +17,7 @@ func initServer() {
 	router.StaticFS("/assets/static/",http.Dir("assets/static/"))
 	router.StaticFile("/favicon.ico", "assets/favicon.ico")
 	router.GET(projectPath+"/", i.Get)
+	router.GET(projectPath+"/book/new/", b.New)
 	router.Run()
 }
 
