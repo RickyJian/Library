@@ -22,6 +22,10 @@ nav button {
     color: #f8f7f4;
 }
 
+form .btn-success {
+    background-color: MediumSeaGreen;
+}
+
 .carousel img {
     height: 440px;
     object-fit: cover;
