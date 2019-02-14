@@ -1,4 +1,4 @@
-package server
+package config
 
 import (
 	"github.com/RickyJian/template"
@@ -14,13 +14,14 @@ type Server struct {
 var b *controller.Book
 var i *controller.Index
 
-func initServer() {
+
+func (s *Server)Init() {
 	router := gin.Default()
 	t := template.TemplateWalk("assets/template/", ".html")
 	router.SetHTMLTemplate(t)
 	router.StaticFS("/assets/static/", http.Dir("assets/static/"))
 	router.StaticFile("/favicon.ico", "assets/favicon.ico")
-	router.GET(projectPath+"/", i.Get)
-	router.GET(projectPath+"/book/new/", b.New)
+	router.GET(s.Root+"/", i.Get)
+	router.GET(s.Root+"/book/new/", b.New)
 	router.Run()
 }

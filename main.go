@@ -4,6 +4,7 @@ import (
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/spf13/viper"
+	"library/config"
 )
 
 var projectPath string
@@ -18,9 +19,9 @@ func init() {
 		fmt.Println(err)
 	}
 	p := viper.GetStringMapString("project")
-	projectPath = p["name"]
-	initDatabase()
-	initServer()
+	config.InitDatabase()
+	s := config.Server{Root:p["name"]}
+	s.Init()
 }
 
 func main() {

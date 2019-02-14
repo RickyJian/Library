@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"library/db"
 )
 
-func initDatabase(){
+func InitDatabase(){
 	dbConfig := viper.GetStringMapString("database")
 	host := dbConfig["host"]
 	port := dbConfig["port"]
