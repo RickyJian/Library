@@ -23,5 +23,6 @@ func (s *Server)Init() {
 	router.StaticFile("/favicon.ico", "assets/favicon.ico")
 	router.GET(s.Root+"/", i.Get)
 	router.GET(s.Root+"/book/new/", b.New)
+	router.POST(s.Root+"/book/add/",b.Add)
 	router.Run()
 }
