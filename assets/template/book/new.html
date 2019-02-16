@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
-                <form id = "addForm">
+                <form id = "addForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">書名</label>
                         <input type="text" class="form-control" id="name" name = "name" placeholder="Go程式設計">
@@ -98,7 +98,7 @@
                     <div class="form-group row">
                         <label for="image" class="col-lg-4 col-form-label">圖片上傳</label>
                         <div class="col-lg-8">
-                            <input type="file" class="form-control-file" id="image">
+                            <input type="file" class="form-control-file" id="image" name = "images"  multiple>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -113,17 +113,21 @@
         <p class="text-center">Copyright © 2019 RJBC </p>
     </div>
     </body>
-    <script src="/assets/static/js/serializeObject.js"></script>
+    <script src="/assets/static/js/serializeobject.js"></script>
+    <script src="/assets/static/js/ajaxfileupload.js"></script>
     <script type="application/javascript">
         function add() {
-            $.ajax({
+            $.ajaxFileUpload({
                 url: "/library/book/add/",
-                contentType:"application/json",
-                method:"POST",
-                data:$("#addForm").serializeObject(),
-                // data:encForm(),
-            }).done(function() {
-            });
+                type:"POST",
+                fileElementId : "image",
+                secureuri:false,
+                dataType:"application/json",
+                data: JSON.parse($("#addForm").serializeObject()),
+                success:function (data, status){
+
+                }
+            })
         }
     </script>
     </html>

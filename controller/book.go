@@ -1,8 +1,8 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/copier"
 	"library/model"
 	"net/http"
 	"strconv"
@@ -27,10 +27,14 @@ func (b *Book) New(c *gin.Context) {
 }
 
 func (b *Book) Add(c *gin.Context) {
-	err := c.BindJSON(&book)
-	copier.Copy(&bookModel,&book)
-	price , err := strconv.Atoi(book.Price)
-	bookModel.Price = int(price)
+	form, _ := c.MultipartForm()
+	fmt.Println(form.File["images"])
+	bookModel.Name = form.Value["name"][0]
+	bookModel.Author = form.Value["author"][0]
+	bookModel.Content = form.Value["content"][0]
+	bookModel.Publication = form.Value["publication:"][0]
+	price, err := strconv.Atoi(form.Value["price"][0])
+	bookModel.Price = price
 	if err == nil {
 		bookModel.Add()
 	}
