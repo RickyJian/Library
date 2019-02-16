@@ -12,12 +12,13 @@ type Book struct {
 	Author      string    `gorm:"not null"`
 	Price       int       `gorm:"not null"`
 	Content     string    `gorm:"null"`
-	Image       string    `gorm:"null"`
+	Cover       string    `gorm:"not null;default:'/assets/static/image/dbook.jpg'"`
 	CreateTime  time.Time `gorm:"not null"`
 }
 
 func (b *Book) Add() bool {
 	if db.GetConn().NewRecord(b) {
+		b.CreateTime = time.Now()
 		db.GetConn().Create(&b)
 		return true
 	}
