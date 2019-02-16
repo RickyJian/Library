@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"strconv"
 )
 
 type Server struct {
@@ -10,12 +11,13 @@ type Server struct {
 }
 
 type Database struct {
-	Host     string
-	Port     string
-	User     string
-	DBName   string
-	Password string
-	SSLMode  string
+	Host      string
+	Port      string
+	User      string
+	DBName    string
+	Password  string
+	SSLMode   string
+	IsMigrate bool
 }
 
 func init() {
@@ -42,6 +44,7 @@ func GetDB() (db Database) {
 	dbName := dbConfig["name"]
 	password := dbConfig["password"]
 	sslmode := dbConfig["sslmode"]
-	db = Database{host, port, user, dbName, password, sslmode}
+	ismigrate, _ := strconv.ParseBool(dbConfig["ismigrate"])
+	db = Database{host, port, user, dbName, password, sslmode, ismigrate}
 	return
 }
