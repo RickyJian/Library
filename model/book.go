@@ -1,5 +1,10 @@
 package model
 
+import (
+	"github.com/jinzhu/copier"
+	"library/repository"
+)
+
 type Book struct {
 	Name        string
 	Publication string
@@ -7,6 +12,12 @@ type Book struct {
 	Price       int
 	Content     string
 	Image       string
+}
+
+func (b *Book) Add() {
+	book := &repository.Book{}
+	copier.Copy(&book,&b)
+	repository.Add(book)
 }
 
 func (b *Book) ReadAll() (bLice []Book) {
