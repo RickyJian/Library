@@ -11,7 +11,7 @@ type Book struct {
 	Author      string
 	Price       int
 	Content     string
-	Image       string
+	Cover       string
 }
 
 func (b *Book) Add() {
