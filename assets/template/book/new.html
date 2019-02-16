@@ -7,16 +7,14 @@
               integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
               crossorigin="anonymous">
         <link rel="stylesheet" href="/assets/static/css/main.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
                 integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
                 crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
                 integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
                 crossorigin="anonymous"></script>
-        <title>首頁</title>
+        <title>新增書本</title>
     </head>
     <body>
     {{/* Header */}}
@@ -72,26 +70,65 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    {{/* Book List*/}}
     <div class="container">
         <div class="row">
             <div class="col-lg-1"></div>
-            <div class="col-lg-3 d-flex justify-content-center">
-                <img class="rounded" src="#">
+            <div class="col-lg-10">
+                <form id = "addForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">書名</label>
+                        <input type="text" class="form-control" id="name" name = "name" placeholder="Go程式設計">
+                    </div>
+                    <div class="form-group">
+                        <label for="publication">出版商</label>
+                        <input type="text" class="form-control" id="publication" name = "publication" placeholder="GoDown">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">作者</label>
+                        <input type="text" class="form-control" id="author" name = "author" placeholder="Rikcy">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">價格</label>
+                        <input type="text" class="form-control" id="price" name = "price" placeholder="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">描述</label>
+                        <textarea class="form-control" id="content" name = "content" rows="15"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <label for="image" class="col-lg-4 col-form-label">圖片上傳</label>
+                        <div class="col-lg-8">
+                            <input type="file" class="form-control-file" id="image" name = "images"  multiple>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type="button" class="btn btn-success" onclick="add()">送出</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-lg-6">
-                <h4>test</h4>
-                <p class="text-justify">出版商：</p>
-                <p class="text-justify">作者：</p>
-                <p class="text-justify">售價：</p>
-                <p class="text-justify">簡述：</p>
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
+            <div class="col-lg-1"></div>
+        </div>
     </div>
     <div class="footer">
         <p class="text-center">Copyright © 2019 RJBC </p>
     </div>
     </body>
+    <script src="/assets/static/js/serializeobject.js"></script>
+    <script src="/assets/static/js/ajaxfileupload.js"></script>
+    <script type="application/javascript">
+        function add() {
+            $.ajaxFileUpload({
+                url: "/library/book/add/",
+                type:"POST",
+                fileElementId : "image",
+                secureuri:false,
+                dataType:"application/json",
+                data: JSON.parse($("#addForm").serializeObject()),
+                success:function (data, status){
+
+                }
+            })
+        }
+    </script>
     </html>
 {{ end }}

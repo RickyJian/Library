@@ -8,3 +8,4 @@ database:
   name: library
   password: postgresql
   sslmode: disable
+  ismigrate: true
