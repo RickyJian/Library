@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"github.com/jinzhu/copier"
 	"library/repository"
 )
@@ -16,16 +15,15 @@ type Book struct {
 	Cover       string
 }
 
-func (b *Book) Add() (data Book, isSuccessful bool) {
+func (b *Book) Add() (isSuccessful bool) {
 	book := &repository.Book{}
 	copier.Copy(&book, &b)
-	dataInterface, isSuccessful := repository.Add(book)
+	isSuccessful = repository.Add(book)
 	if !isSuccessful {
-		return Book{}, isSuccessful
+		return isSuccessful
 	}
-	copier.Copy(&data, dataInterface.(repository.Book))
-	fmt.Println(data)
-	return
+	copier.Copy(&b, &book)
+	return isSuccessful
 }
 
 func (b *Book) ReadAll() (bLice []Book) {

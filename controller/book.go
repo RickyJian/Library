@@ -36,9 +36,9 @@ func (b *Book) Add(c *gin.Context) {
 	bookModel.Price = price
 	bookModel.Cover = "C:\\tmp\\upload\\" + form.File["images"][0].Filename
 	if err == nil {
-		book, isSuccessful := bookModel.Add()
+		isSuccessful := bookModel.Add()
 		if isSuccessful {
-			err = util.CreateFile(strconv.Itoa(book.ID), *form.File["images"][0])
+			err = util.CreateFile(strconv.Itoa(bookModel.ID), *form.File["images"][0])
 			c.JSON(
 				http.StatusOK,
 				gin.H{

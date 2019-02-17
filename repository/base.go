@@ -3,7 +3,8 @@ package repository
 import "library/db"
 
 type Base interface {
-	Add() (data interface{}, success bool)
+	Add() (isSuccessful bool)
+	ReadAll() (dataList []interface{})
 }
 
 func init() {
@@ -12,6 +13,10 @@ func init() {
 	}
 }
 
-func Add(base Base) (data interface{}, isSuccessful bool) {
+func Add(base Base) (isSuccessful bool) {
 	return base.Add()
+}
+
+func ReadAll(base Base) (dataList []interface{}) {
+	return base.ReadAll()
 }
