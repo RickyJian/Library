@@ -34,9 +34,18 @@ func (b *Book) Add(c *gin.Context) {
 	bookModel.Publication = form.Value["publication"][0]
 	price, err := strconv.Atoi(form.Value["price"][0])
 	bookModel.Price = price
-	err = util.CreateFile(*form.File["images"][0])
 	bookModel.Cover = "C:\\tmp\\upload\\" + form.File["images"][0].Filename
 	if err == nil {
-		bookModel.Add()
+		book, isSuccessful := bookModel.Add()
+		if isSuccessful {
+			err = util.CreateFile(strconv.Itoa(book.ID), *form.File["images"][0])
+			c.JSON(
+				http.StatusOK,
+				gin.H{
+					"status":  200,
+					"message": "success",
+				},
+			)
+		}
 	}
 }
