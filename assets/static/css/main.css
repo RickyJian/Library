@@ -3,7 +3,7 @@ body {
 }
 
 nav ,nav > a{
-    background-color: MediumSeaGreen;
+    background-color: #6cc032;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: bold;
     font-size: 20px;
@@ -17,13 +17,23 @@ nav button.navbar-toggler{
 nav button {
     border: 1px solid #f8f7f4;
     font-size: 22px;
-    background-color: MediumSeaGreen;
+    background-color: #6cc032;
     border-radius: 4px;
     color: #f8f7f4;
 }
 
 form .btn-success {
-    background-color: MediumSeaGreen;
+    background-color: #6cc032;
+}
+
+.btn-success-g {
+    background-color: #6cc032;
+    color: white;
+}
+
+.btn-danger-r {
+    background-color: #d2342e;
+    color: white;
 }
 
 .carousel img {
@@ -47,7 +57,7 @@ form .btn-success {
 
 .footer {
     color: #f8f7f4;
-    background-color: MediumSeaGreen;
+    background-color: #6cc032;
     height: 50px;
     font-size: 20px;
 }
