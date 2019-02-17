@@ -12,8 +12,8 @@ type Index struct {
 var b model.Book
 
 func (i *Index) Get(c *gin.Context) {
-	bSlice := b.ReadAll()
+	bookSlice := b.ReadAll()
 	c.HTML(http.StatusOK, "index", gin.H{
-		"bookList":bSlice,
+		"bookList": bookSlice,
 	})
 }

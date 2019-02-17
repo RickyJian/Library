@@ -24,10 +24,3 @@ func (b *Book) Add() (isSuccessful bool) {
 	}
 	return false
 }
-
-func (b *Book) ReadAll() (data []interface{}) {
-	db.GetConn().Find(&b)
-
-	//ss.
-	return
-}
