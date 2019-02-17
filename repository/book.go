@@ -16,11 +16,11 @@ type Book struct {
 	CreateTime  time.Time `gorm:"not null"`
 }
 
-func (b *Book) Add() bool {
+func (b *Book) Add() (data interface{}, isSuccessful bool) {
 	if db.GetConn().NewRecord(b) {
 		b.CreateTime = time.Now()
 		db.GetConn().Create(&b)
-		return true
+		return *b , true
 	}
-	return false
+	return nil, false
 }
