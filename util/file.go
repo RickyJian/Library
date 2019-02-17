@@ -6,15 +6,16 @@ import (
 	"os"
 )
 
-var dest = "C:\\tmp\\upload\\"
+const dest = "C:\\tmp\\upload\\"
 
-func CreateFile(file multipart.FileHeader) (err error) {
+func CreateFile(id string, file multipart.FileHeader) (err error) {
 	src, err := file.Open()
 	defer src.Close()
 	if err != nil {
 		return
 	}
-	dest, err := os.Create(dest + file.Filename)
+	autoCreateDir(dest + id)
+	dest, err := os.Create(dest + id + "\\" + file.Filename)
 	defer dest.Close()
 	if err != nil {
 		return
@@ -23,14 +24,20 @@ func CreateFile(file multipart.FileHeader) (err error) {
 	return nil
 }
 
-func CreateFiles(files []*multipart.FileHeader) (success []string, err error) {
+func CreateFiles(id string, files []*multipart.FileHeader) (success []string, err error) {
 	success = []string{}
 	for _, f := range files {
-		err = CreateFile(*f)
+		err = CreateFile(id, *f)
 		success = append(success, f.Filename)
 		if err != nil {
 			return
 		}
 	}
 	return success, nil
+}
+
+func autoCreateDir(dir string) {
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		os.MkdirAll(dir, 777)
+	}
 }

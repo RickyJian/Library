@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <button type="button" class="btn btn-success" onclick="add()">送出</button>
+                        <button type="button" class="btn btn-success-g" onclick="add()">送出</button>
                     </div>
                 </form>
             </div>
@@ -112,20 +112,54 @@
     <div class="footer">
         <p class="text-center">Copyright © 2019 RJBC </p>
     </div>
+    {{/* model */}}
+    <div class="modal fade" id="model" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelLabel">結果</h5>
+                </div>
+                <div class="modal-body" id = "modelBody">
+                </div>
+                <div class="modal-footer" id = "modelFooter">
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
     <script src="/assets/static/js/serializeobject.js"></script>
     <script src="/assets/static/js/ajaxfileupload.js"></script>
     <script type="application/javascript">
+        function doRedirect() {
+            window.location = "\\library\\"
+        }
+        
+        function doClose() {
+            $('#model').modal("hide")
+        }
+
         function add() {
             $.ajaxFileUpload({
                 url: "/library/book/add/",
                 type:"POST",
                 fileElementId : "image",
                 secureuri:false,
-                dataType:"application/json",
+                dataType:"json",
                 data: JSON.parse($("#addForm").serializeObject()),
-                success:function (data, status){
-
+                async:false,
+                success:function (data){
+                    if (data.status == 200){
+                        $("#modelBody").empty().append("新增成功。")
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn btn-success-g\" onclick =\"doRedirect()\">確認</button>")
+                        $('#model').modal({
+                            "backdrop":"static",
+                            "show":true,
+                        })
+                    }else{
+                        $("#modelBody").empty().append("新增失敗。")
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                        $('#model').modal("show")
+                    }
                 }
             })
         }

@@ -3,7 +3,7 @@ package repository
 import "library/db"
 
 type Base interface {
-	Add() bool
+	Add() (data interface{}, success bool)
 }
 
 func init() {
@@ -12,6 +12,6 @@ func init() {
 	}
 }
 
-func Add(base Base) bool {
+func Add(base Base) (data interface{}, isSuccessful bool) {
 	return base.Add()
 }
