@@ -14,10 +14,19 @@ nav button.navbar-toggler{
     background-color:#f8f7f4;
 }
 
-nav button {
+.nav-button {
     border: 1px solid #f8f7f4;
     font-size: 22px;
     background-color: #6cc032;
+    border-radius: 4px;
+    color: #f8f7f4;
+}
+
+.nav-button:hover {
+    border: 1px solid #f8f7f4;
+    font-size: 22px;
+    background-color: #5aa12a;
+    /*background-color: #71a44e;*/
     border-radius: 4px;
     color: #f8f7f4;
 }
