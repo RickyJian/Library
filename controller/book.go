@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"library/model"
 	"library/util"
@@ -24,13 +23,15 @@ func (b *Book) Edit(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err == nil {
 		bookModel.ID = id
-		bookModel.ReadByID()
-		c.HTML(http.StatusOK, "book/edit.html", gin.H{
-			"book": bookModel,
-		})
-	} else {
-		fmt.Println(err)
+		isRecordNotFound := bookModel.ReadByID()
+		if !isRecordNotFound {
+			c.HTML(http.StatusOK, "book/edit.html", gin.H{
+				"book": bookModel,
+			})
+		}
 	}
+	c.HTML(http.StatusNotFound, "404.html", gin.H{
+	})
 
 }
 func (b *Book) New(c *gin.Context) {
@@ -74,6 +75,31 @@ func (b *Book) Update(c *gin.Context) {
 		bookModel.Price = price
 		bookModel.Publication = c.PostForm("publication")
 		bookModel.Update()
+		c.JSON(
+			http.StatusOK,
+			gin.H{
+				"status":  200,
+				"message": "success",
+			},
+		)
+	}
+}
+
+func (b *Book) UpdateImage(c *gin.Context) {
+	form, _ := c.MultipartForm()
+	id, err := strconv.Atoi(c.Param("id"))
+	if err == nil {
+		bookModel.ID = id
+		bookModel.Cover = "C:\\tmp\\upload\\" + form.File["images"][0].Filename
+		bookModel.Update()
+		err = util.CreateFile(strconv.Itoa(bookModel.ID), *form.File["images"][0])
+		c.JSON(
+			http.StatusOK,
+			gin.H{
+				"status":  200,
+				"message": "success",
+			},
+		)
 	}
 }
 

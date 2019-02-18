@@ -145,37 +145,49 @@
         }
 
         function update(id) {
-            console.log($("#updateForm").serialize());
             $.ajax({
-                method:"PUT",
-                dataType: "application/json",
-                url:"/library/book/detail/" + id + "/",
-                data:$("#updateForm").serialize(),
-            }).done(function() {
+                type: "PUT",
+                dataType: "json",
+                url: "/library/book/detail/" + id + "/",
+                data: $("#updateForm").serialize(),
+                async: false,
+            }).done(function (data) {
+                if (data.status == 200) {
+                    updateImage(id,true)
+                } else {
+                    $("#modelBody").empty().append("更新失敗。")
+                    $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                    $('#model').modal("show")
+                }
             });
-            // $.ajaxFileUpload({
-            //     url: "/library/book/detail/" + id + "/",
-            //     type: "PATCH",
-            //     fileElementId: "image",
-            //     secureuri: false,
-            //     dataType: "json",
-            //     data: JSON.parse($("#updateForm").serializeObject()),
-            //     async: false,
-            //     success: function (data) {
-            //         if (data.status == 200) {
-            //             $("#modelBody").empty().append("新增成功。")
-            //             $("#modelFooter").empty().append("<button type=\"button\" class=\"btn btn-success-g\" onclick =\"doRedirect()\">確認</button>")
-            //             $('#model').modal({
-            //                 "backdrop": "static",
-            //                 "show": true,
-            //             })
-            //         } else {
-            //             $("#modelBody").empty().append("新增失敗。")
-            //             $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
-            //             $('#model').modal("show")
-            //         }
-            //     }
-            // })
+        }
+
+        function updateImage(id,isSuccessful) {
+            if (isSuccessful) {
+                $.ajaxFileUpload({
+                    url: "/library/book/detail/" + id + "/image/upload/",
+                    type: "POST",
+                    fileElementId: "image",
+                    secureuri: false,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        if (data.status == 200) {
+                            $("#modelBody").empty().append("更新成功。")
+                            $("#modelFooter").empty().append("<button type=\"button\" class=\"btn btn-success-g\" onclick =\"doRedirect()\">確認</button>")
+                            $('#model').modal({
+                                "backdrop": "static",
+                                "show": true,
+                            })
+                        } else {
+                            $("#modelBody").empty().append("更新失敗。")
+                            $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                            $('#model').modal("show")
+                        }
+                    }
+                })
+
+            }
         }
     </script>
     </html>
