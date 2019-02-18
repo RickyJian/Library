@@ -86,14 +86,11 @@
                         </div>
                     </div>
                 </div>
-                {{/*<div class="col-lg-4 d-flex justify-content-center">*/}}
-                {{/*<img class="rounded" src="{{$book.Cover}}">*/}}
-                {{/*</div>*/}}
                 <div class="col-lg-6">
                     <h4>{{$book.Name}}</h4>
                     <p class="text-justify">出版商：{{$book.Publication}}</p>
                     <p class="text-justify">作者：{{$book.Author}}</p>
-                    <p class="text-justify">售價： ${{$book.Price}}</p>
+                    <p class="text-justify">售價：${{$book.Price}}</p>
                     <p class="text-justify">簡述：
                         {{$book.Content}}
                     </p>
@@ -108,7 +105,7 @@
     </body>
     <script type="application/javascript">
         function getDetail(id) {
-            window.location = "/library/book/" + id
+            window.location = "/library/book/" + id + "/"
         }
     </script>
     </html>
