@@ -82,19 +82,17 @@
                 <p class="text-justify">出版商：{{ $book.Publication }}</p>
                 <p class="text-justify">作者：{{ $book.Author }}</p>
                 <p class="text-justify">售價：{{ $book.Price }}</p>
-                <p class="text-justify">
+                <div class="text-justify">
                     <button type="button" class="btn btn-info-dg">加入購物車</button>
-                </p>
+                </div>
             </div>
             <div class="col-lg-1"></div>
         </div>
         <div class = "row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
-                <h4>{{ $book.Name }}</h4>
-                <p class="text-justify">出版商：{{ $book.Publication }}</p>
-                <p class="text-justify">作者：{{ $book.Author }}</p>
-                <p class="text-justify">售價：{{ $book.Price }}</p>
+                <h5>內容：</h5>
+                <p class="text-justify">{{ $book.Content }}</p>
             </div>
             <div class="col-lg-1"></div>
         </div>
