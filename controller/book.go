@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"library/model"
 	"library/util"
@@ -20,9 +21,17 @@ var bookModel model.Book
 var book Book
 
 func (b *Book) Edit(c *gin.Context) {
-	c.HTML(http.StatusOK, "book/edit.html", gin.H{
-		"path": "",
-	})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err == nil {
+		bookModel.ID = id
+		bookModel.ReadByID()
+		c.HTML(http.StatusOK, "book/edit.html", gin.H{
+			"book": bookModel,
+		})
+	} else {
+		fmt.Println(err)
+	}
+
 }
 func (b *Book) New(c *gin.Context) {
 	c.HTML(http.StatusOK, "book/new.html", gin.H{
@@ -54,6 +63,42 @@ func (b *Book) Add(c *gin.Context) {
 	}
 }
 
+func (b *Book) Update(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err == nil {
+		bookModel.ID = id
+		bookModel.Content = c.PostForm("content")
+		bookModel.Name = c.PostForm("name")
+		bookModel.Author = c.PostForm("author")
+		price, _ := strconv.Atoi(c.PostForm("price"))
+		bookModel.Price = price
+		bookModel.Publication = c.PostForm("publication")
+		bookModel.Update()
+	}
+	//fmt.Println(bb)
+	//form, _ := c.MultipartForm()
+	//bookModel.Name = form.Value["name"][0]
+	//bookModel.Author = form.Value["author"][0]
+	//bookModel.Content = form.Value["content"][0]
+	//bookModel.Publication = form.Value["publication"][0]
+	//price, err := strconv.Atoi(form.Value["price"][0])
+	//bookModel.Price = price
+	//bookModel.Cover = "C:\\tmp\\upload\\" + form.File["images"][0].Filename
+	//if err == nil {
+	//	isSuccessful := bookModel.Add()
+	//	if isSuccessful {
+	//		err = util.CreateFile(strconv.Itoa(bookModel.ID), *form.File["images"][0])
+	//		c.JSON(
+	//			http.StatusOK,
+	//			gin.H{
+	//				"status":  200,
+	//				"message": "success",
+	//			},
+	//		)
+	//	}
+	//}
+}
+
 func (b *Book) Detal(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err == nil {
@@ -62,10 +107,8 @@ func (b *Book) Detal(c *gin.Context) {
 		c.HTML(http.StatusOK, "book/detail.html", gin.H{
 			"book": bookModel,
 		})
-	}else{
+	} else {
 		c.HTML(http.StatusNotFound, "404.html", gin.H{
 		})
 	}
-
-
 }

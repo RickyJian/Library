@@ -32,8 +32,14 @@ func (b *Book) ReadAll() (resultSlice []Book) {
 	copier.Copy(&resultSlice, &bookSlice)
 	return
 }
+
 func (b *Book) ReadByID() {
 	book := &repository.Book{ID: b.ID}
 	repository.ReadByID(book)
 	copier.Copy(&b, book)
+}
+
+func (b *Book) Update() {
+	book := &repository.Book{ID: b.ID}
+	repository.Update(book, &b)
 }

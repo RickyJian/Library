@@ -28,3 +28,8 @@ func (b *Book) Add() (isSuccessful bool) {
 func (b *Book) ReadByID() {
 	db.GetConn().Where("ID = ?", b.ID).First(&b)
 }
+
+func (b *Book) Update(data interface{}){
+	db.GetConn().Model(&b).Where("ID = ?", b.ID).UpdateColumns(data)
+}
+

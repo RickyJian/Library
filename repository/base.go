@@ -7,6 +7,7 @@ import (
 type Base interface {
 	Add() (isSuccessful bool)
 	ReadByID()
+	Update(data interface{})
 }
 
 func init() {
@@ -25,4 +26,8 @@ func ReadByID(base Base) {
 
 func ReadAll(data interface{}) {
 	db.GetConn().Find(data)
+}
+
+func Update(base Base , data interface{}){
+	base.Update(data)
 }
