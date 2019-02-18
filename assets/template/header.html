@@ -1,0 +1,26 @@
+{{ define "header"}}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/library/">
+        <img src="/assets/static/image/library.png" width="160px" height="50px" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        </ul>
+        <div class="form-group form-inline my-2" >
+            <div>
+                <form class="">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="mr-2 pb-1 nav-button" type="submit">搜尋</button>
+                </form>
+            </div>
+            <div>
+                <button class="pb-1 nav-button" onclick="redirect()">登入</button>
+            </div>
+        </div>
+    </div>
+</nav>
+{{ end}}
