@@ -16,4 +16,5 @@ func controllerBind() {
 	router.GET(s.Root+"/book/edit/:id/", b.Edit)
 	router.POST(s.Root+"/book/add/", b.Add)
 	router.PUT(s.Root+"/book/detail/:id/", b.Update)
+	router.POST(s.Root+"/book/detail/:id/image/upload/", b.UpdateImage)
 }
