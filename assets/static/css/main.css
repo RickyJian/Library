@@ -39,8 +39,14 @@ form .btn-success {
     background-color: #6cc032;
     color: white;
 }
+
 .btn-info-dg {
     background-color: #3E8A64;
+    color: white;
+}
+
+.btn-success-y {
+    background-color: #f8c31c;
     color: white;
 }
 
