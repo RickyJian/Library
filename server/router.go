@@ -11,6 +11,5 @@ var i *controller.Index
 func controllerBind() {
 	s := config.GetProject()
 	router.GET(s.Root+"/", i.Get)
-	router.GET(s.Root+"/book/new/", b.New)
-	router.POST(s.Root+"/book/add/", b.Add)
+	router.GET(s.Root+"/book/:action/", b.Dispatch)
 }
