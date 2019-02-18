@@ -27,11 +27,11 @@ func (b *Book) Dispatch(c *gin.Context) {
 	case "add":
 		b.Add(c)
 	default:
-		_ , err := strconv.Atoi(action)
+		_, err := strconv.Atoi(action)
 		if err == nil {
 			b.Detal(c)
-		}else{
-		//	404 page
+		} else {
+			//	404 page
 		}
 	}
 }
@@ -67,8 +67,10 @@ func (b *Book) Add(c *gin.Context) {
 }
 
 func (b *Book) Detal(c *gin.Context) {
-	ID := c.Param("id")
+	id, _ := strconv.Atoi(c.Param("action"))
+	bookModel.ID = id
+	bookModel.ReadByID()
 	c.HTML(http.StatusOK, "book/detail.html", gin.H{
-		"path": "",
+		"book": bookModel,
 	})
 }

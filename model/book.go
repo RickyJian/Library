@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"github.com/jinzhu/copier"
 	"library/repository"
 )
@@ -31,6 +30,10 @@ func (b *Book) ReadAll() (resultSlice []Book) {
 	var bookSlice = []repository.Book{}
 	repository.ReadAll(&bookSlice)
 	copier.Copy(&resultSlice, &bookSlice)
-	fmt.Println(resultSlice[0].Cover)
 	return
+}
+func (b *Book) ReadByID() {
+	book := &repository.Book{ID: b.ID}
+	repository.ReadByID(book)
+	copier.Copy(&b, book)
 }

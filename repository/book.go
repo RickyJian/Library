@@ -24,3 +24,7 @@ func (b *Book) Add() (isSuccessful bool) {
 	}
 	return false
 }
+
+func (b *Book) ReadByID() {
+	db.GetConn().Where("ID = ?", b.ID).First(&b)
+}

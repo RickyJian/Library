@@ -1,0 +1,159 @@
+{{ define "book/detail.html"}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/static/css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                crossorigin="anonymous"></script>
+        <title>詳細資料</title>
+    </head>
+    <body>
+    {{/* Header */}}
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/library/">
+            <img src="/assets/static/image/library.png" width="160px" height="50px" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    {{/* Carousel */}}
+    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+            <li data-target="#carousel" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/assets/static/image/c1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/static/image/c2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/static/image/c3.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/static/image/c4.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/static/image/c5.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    {{ $book := .book }}
+    <div class="container">
+        <div id="" class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-4  d-flex justify-content-center">
+                <img class="rounded" src="/assets/static/image/b1.jpg">
+            </div>
+            <div class="col-lg-6">
+                <h4>{{ $book.Name }}</h4>
+                <p class="text-justify">出版商：{{ $book.Publication }}</p>
+                <p class="text-justify">作者：{{ $book.Author }}</p>
+                <p class="text-justify">售價：{{ $book.Price }}</p>
+                <p class="text-justify">
+                    <button type="button" class="btn btn-info-dg">加入購物車</button>
+                </p>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+        <div class = "row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <h4>{{ $book.Name }}</h4>
+                <p class="text-justify">出版商：{{ $book.Publication }}</p>
+                <p class="text-justify">作者：{{ $book.Author }}</p>
+                <p class="text-justify">售價：{{ $book.Price }}</p>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="text-center">Copyright © 2019 RJBC </p>
+    </div>
+    {{/* model */}}
+    <div class="modal fade" id="model" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelLabel">結果</h5>
+                </div>
+                <div class="modal-body" id="modelBody">
+                </div>
+                <div class="modal-footer" id="modelFooter">
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script src="/assets/static/js/serializeobject.js"></script>
+    <script src="/assets/static/js/ajaxfileupload.js"></script>
+    <script type="application/javascript">
+        function doRedirect() {
+            window.location = "\\library\\"
+        }
+
+        function doClose() {
+            $('#model').modal("hide")
+        }
+
+        function add() {
+            $.ajaxFileUpload({
+                url: "/library/book/add/",
+                type: "POST",
+                fileElementId: "image",
+                secureuri: false,
+                dataType: "json",
+                data: JSON.parse($("#addForm").serializeObject()),
+                async: false,
+                success: function (data) {
+                    if (data.status == 200) {
+                        $("#modelBody").empty().append("新增成功。")
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn btn-success-g\" onclick =\"doRedirect()\">確認</button>")
+                        $('#model').modal({
+                            "backdrop": "static",
+                            "show": true,
+                        })
+                    } else {
+                        $("#modelBody").empty().append("新增失敗。")
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                        $('#model').modal("show")
+                    }
+                }
+            })
+        }
+    </script>
+    </html>
+{{ end }}

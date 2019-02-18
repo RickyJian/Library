@@ -6,6 +6,7 @@ import (
 
 type Base interface {
 	Add() (isSuccessful bool)
+	ReadByID()
 }
 
 func init() {
@@ -18,6 +19,10 @@ func Add(base Base) (isSuccessful bool) {
 	return base.Add()
 }
 
-func ReadAll(data interface{}){
+func ReadByID(base Base) {
+	base.ReadByID()
+}
+
+func ReadAll(data interface{}) {
 	db.GetConn().Find(data)
 }
