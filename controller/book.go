@@ -19,23 +19,11 @@ type Book struct {
 var bookModel model.Book
 var book Book
 
-func (b *Book) Dispatch(c *gin.Context) {
-	action := c.Param("action")
-	switch action {
-	case "new":
-		b.New(c)
-	case "add":
-		b.Add(c)
-	default:
-		_, err := strconv.Atoi(action)
-		if err == nil {
-			b.Detal(c)
-		} else {
-			//	404 page
-		}
-	}
+func (b *Book) Edit(c *gin.Context) {
+	c.HTML(http.StatusOK, "book/edit.html", gin.H{
+		"path": "",
+	})
 }
-
 func (b *Book) New(c *gin.Context) {
 	c.HTML(http.StatusOK, "book/new.html", gin.H{
 		"path": "",
@@ -67,10 +55,17 @@ func (b *Book) Add(c *gin.Context) {
 }
 
 func (b *Book) Detal(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Param("action"))
-	bookModel.ID = id
-	bookModel.ReadByID()
-	c.HTML(http.StatusOK, "book/detail.html", gin.H{
-		"book": bookModel,
-	})
+	id, err := strconv.Atoi(c.Param("id"))
+	if err == nil {
+		bookModel.ID = id
+		bookModel.ReadByID()
+		c.HTML(http.StatusOK, "book/detail.html", gin.H{
+			"book": bookModel,
+		})
+	}else{
+		c.HTML(http.StatusNotFound, "404.html", gin.H{
+		})
+	}
+
+
 }
