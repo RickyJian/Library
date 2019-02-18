@@ -25,11 +25,11 @@ func (b *Book) Add() (isSuccessful bool) {
 	return false
 }
 
-func (b *Book) ReadByID() {
-	db.GetConn().Where("ID = ?", b.ID).First(&b)
+func (b *Book) ReadByID() (isRecordNotFound bool) {
+	isRecordNotFound = db.GetConn().Where("ID = ?", b.ID).First(&b).RecordNotFound()
+	return
 }
 
-func (b *Book) Update(data interface{}){
+func (b *Book) Update(data interface{}) {
 	db.GetConn().Model(&b).Where("ID = ?", b.ID).UpdateColumns(data)
 }
-

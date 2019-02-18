@@ -6,7 +6,7 @@ import (
 
 type Base interface {
 	Add() (isSuccessful bool)
-	ReadByID()
+	ReadByID() (isRecordNotFound bool)
 	Update(data interface{})
 }
 
@@ -20,14 +20,14 @@ func Add(base Base) (isSuccessful bool) {
 	return base.Add()
 }
 
-func ReadByID(base Base) {
-	base.ReadByID()
+func ReadByID(base Base) (isRecordNotFound bool) {
+	return base.ReadByID()
 }
 
 func ReadAll(data interface{}) {
 	db.GetConn().Find(data)
 }
 
-func Update(base Base , data interface{}){
+func Update(base Base, data interface{}) {
 	base.Update(data)
 }

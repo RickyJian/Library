@@ -33,10 +33,11 @@ func (b *Book) ReadAll() (resultSlice []Book) {
 	return
 }
 
-func (b *Book) ReadByID() {
+func (b *Book) ReadByID() (isRecordNotFound bool) {
 	book := &repository.Book{ID: b.ID}
-	repository.ReadByID(book)
+	isRecordNotFound = repository.ReadByID(book)
 	copier.Copy(&b, book)
+	return
 }
 
 func (b *Book) Update() {

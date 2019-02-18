@@ -75,40 +75,19 @@ func (b *Book) Update(c *gin.Context) {
 		bookModel.Publication = c.PostForm("publication")
 		bookModel.Update()
 	}
-	//fmt.Println(bb)
-	//form, _ := c.MultipartForm()
-	//bookModel.Name = form.Value["name"][0]
-	//bookModel.Author = form.Value["author"][0]
-	//bookModel.Content = form.Value["content"][0]
-	//bookModel.Publication = form.Value["publication"][0]
-	//price, err := strconv.Atoi(form.Value["price"][0])
-	//bookModel.Price = price
-	//bookModel.Cover = "C:\\tmp\\upload\\" + form.File["images"][0].Filename
-	//if err == nil {
-	//	isSuccessful := bookModel.Add()
-	//	if isSuccessful {
-	//		err = util.CreateFile(strconv.Itoa(bookModel.ID), *form.File["images"][0])
-	//		c.JSON(
-	//			http.StatusOK,
-	//			gin.H{
-	//				"status":  200,
-	//				"message": "success",
-	//			},
-	//		)
-	//	}
-	//}
 }
 
-func (b *Book) Detal(c *gin.Context) {
+func (b *Book) Detail(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err == nil {
 		bookModel.ID = id
-		bookModel.ReadByID()
-		c.HTML(http.StatusOK, "book/detail.html", gin.H{
-			"book": bookModel,
-		})
-	} else {
-		c.HTML(http.StatusNotFound, "404.html", gin.H{
-		})
+		isRecordNotFound := bookModel.ReadByID()
+		if !isRecordNotFound {
+			c.HTML(http.StatusOK, "book/detail.html", gin.H{
+				"book": bookModel,
+			})
+		}
 	}
+	c.HTML(http.StatusNotFound, "404.html", gin.H{
+	})
 }
