@@ -30,6 +30,10 @@ form .btn-success {
     background-color: #6cc032;
     color: white;
 }
+.btn-info-dg {
+    background-color: #3E8A64;
+    color: white;
+}
 
 .btn-danger-r {
     background-color: #d2342e;
