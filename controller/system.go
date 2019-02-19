@@ -6,14 +6,26 @@ import (
 	"net/http"
 )
 
-type Index struct {
+type System struct {
 }
 
 var b model.Book
 
-func (i *Index) Index(c *gin.Context) {
+func (s *System) Index(c *gin.Context) {
 	bookSlice := b.ReadAll()
 	c.HTML(http.StatusOK, "index", gin.H{
 		"bookList": bookSlice,
+	})
+}
+
+func (s *System) Login(c *gin.Context) {
+	c.HTML(http.StatusOK, "login", gin.H{
+		"path": "",
+	})
+}
+
+func (s *System) SignUp(c *gin.Context) {
+	c.HTML(http.StatusOK, "signup", gin.H{
+		"path": "",
 	})
 }

@@ -1,0 +1,90 @@
+{{ define "signup"}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/static/css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/assets/static/css/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                crossorigin="anonymous"></script>
+        <title>註冊</title>
+    </head>
+    <body>
+    {{/* Header */}}
+    {{template "header"}}
+    {{/* Book List*/}}
+    <div class="container my-4 py-5">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <form id = "addForm">
+                    <div class="form-group">
+                        <label for="name">名稱</label>
+                        <input type="text" class="form-control" id="name" name ="name"
+                               placeholder="ricky_jian">
+                    </div>
+                    <div class="form-group">
+                        <label for="account">帳號</label>
+                        <input type="text" class="form-control" id="account" name ="account"
+                               placeholder="ricky">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密碼</label>
+                        <input type="password" class="form-control" id="password" name ="password"
+                               placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">確認密碼</label>
+                        <input type="password" class="form-control" id="password" name ="password"
+                               placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">性別</label>
+                        <select class="form-control" id="gender" name = "gender">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMail</label>
+                        <input type="email" class="form-control" id="email" name ="email"
+                               placeholder="ricky@gmail.com">
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type="button" class="btn btn-success-g" onclick="add()">送出</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+    {{template "footer"}}
+    </body>
+    <script type="application/javascript">
+        function add() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/library/user/add/",
+                data: $("#addForm").serialize(),
+                async: false,
+            }).done(function (data) {
+                if (data.status == 200) {
+                } else {
+                    $("#modelBody").empty().append("更新失敗。")
+                    $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                    $('#model').modal("show")
+                }
+            });
+        }
+    </script>
+    </html>
+{{ end }}
