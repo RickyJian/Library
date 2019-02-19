@@ -12,7 +12,7 @@ type Base interface {
 
 func init() {
 	if db.IsMigrate {
-		db.GetConn().AutoMigrate(&Book{})
+		db.GetConn().AutoMigrate(&Book{},&User{})
 	}
 }
 
