@@ -1,5 +1,11 @@
 package model
 
+import (
+	"fmt"
+	"github.com/jinzhu/copier"
+	"library/repository"
+)
+
 type User struct {
 	Name     string
 	Account  string
@@ -8,6 +14,20 @@ type User struct {
 	EMail    string
 }
 
+const roleID = 0
+
 func (u *User) Add() (isSuccessful bool) {
+	user := &repository.User{}
+	copier.Copy(user, &u)
+	user.Role = roleID
+	isSuccessful = repository.Add(user)
+	fmt.Println(isSuccessful)
+	return
+}
+
+func (u *User) ReadByID() (isRecordNotFound bool) {
+	user := &repository.User{Account: u.Account}
+	isRecordNotFound = repository.ReadByID(user)
+	copier.Copy(&u, user)
 	return
 }
