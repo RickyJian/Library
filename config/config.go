@@ -18,6 +18,7 @@ type Database struct {
 	Password  string
 	SSLMode   string
 	IsMigrate bool
+	IsLog     bool
 }
 
 func init() {
@@ -45,6 +46,7 @@ func GetDB() (db Database) {
 	password := dbConfig["password"]
 	sslmode := dbConfig["sslmode"]
 	ismigrate, _ := strconv.ParseBool(dbConfig["ismigrate"])
-	db = Database{host, port, user, dbName, password, sslmode, ismigrate}
+	islog, _ := strconv.ParseBool(dbConfig["islog"])
+	db = Database{host, port, user, dbName, password, sslmode, ismigrate,islog}
 	return
 }

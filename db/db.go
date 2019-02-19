@@ -15,6 +15,7 @@ func init() {
 	db := config.GetDB()
 	dbConn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", db.Host, db.Port, db.User, db.DBName, db.Password, db.SSLMode)
 	database, err := gorm.Open("postgres", dbConn)
+	database.LogMode(db.IsLog)
 	database.DB().SetMaxOpenConns(10)
 	database.DB().SetMaxIdleConns(5)
 	database.DB().SetConnMaxLifetime(time.Second * 300)
