@@ -97,10 +97,8 @@
         function update(id) {
             $.ajax({
                 type: "PUT",
-                dataType: "json",
                 url: "/library/book/detail/" + id + "/",
                 data: $("#updateForm").serialize(),
-                async: false,
             }).done(function (data) {
                 if (data.status == 200) {
                     updateImage(id,true)
