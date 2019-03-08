@@ -28,22 +28,25 @@
                 <div class="card">
                     <h5 class="card-header text-center">登入</h5>
                     <div class="card-body">
-                        <form>
+                        <form id="loginForm">
                             <div class="form-group row">
                                 <label for="account" class="col-sm-2 col-form-label">帳號</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="account" name = "account" placeholder="account">
+                                    <input type="text" class="form-control" id="account" name="account"
+                                           placeholder="account">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="password" class="col-sm-2 col-form-label">密碼</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" name = "password" placeholder="password">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                           placeholder="password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-6 text-center">
-                                    <button type="button" class="btn btn-success-y" onclick="redirectSignUp()">註冊</button>
+                                    <button type="button" class="btn btn-success-y" onclick="redirectSignUp()">註冊
+                                    </button>
                                 </div>
                                 <div class="col-6 text-center">
                                     <button type="button" class="btn btn-success-g" onclick="doLogin()">登入</button>
@@ -57,13 +60,54 @@
         </div>
     </div>
     {{template "footer"}}
+    {{/* model */}}
+    <div class="modal fade" id="model" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelLabel">結果</h5>
+                </div>
+                <div class="modal-body" id="modelBody">
+                </div>
+                <div class="modal-footer" id="modelFooter">
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
     <script type="application/javascript">
         function doLogin() {
-
+            $.ajax({
+                type: "POST",
+                url: "/library/login/",
+                data: $("#loginForm").serialize(),
+            }).done(function (data) {
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        $("#modelBody").empty().append(data.message)
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn btn-success-g\" onclick =\"doRedirect()\">確認</button>")
+                        $('#model').modal({
+                            "backdrop": "static",
+                            "show": true,
+                        })
+                    } else {
+                        $("#modelBody").empty().append(data.message)
+                        $("#modelFooter").empty().append("<button type=\"button\" class=\"btn .btn-danger-r\" onclick =\"doClose()\">關閉</button>")
+                        $('#model').modal("show")
+                    }
+                }
+            });
         }
+
+        function doRedirect() {
+            window.location = "/library/"
+        }
+
         function redirectSignUp() {
             window.location = "/library/signup/"
+        }
+        function doClose() {
+            $('#model').modal("hide")
         }
     </script>
     </html>

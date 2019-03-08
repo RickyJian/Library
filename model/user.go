@@ -31,3 +31,11 @@ func (u *User) ReadByID() (isRecordNotFound bool) {
 	copier.Copy(&u, user)
 	return
 }
+
+func (u *User) ReadForLogin() (isRecordNotFound bool) {
+	user := &repository.User{Account: u.Account,Password:u.Password}
+	isRecordNotFound = user.ReadForLogin()
+	copier.Copy(&u, user)
+	return
+}
+

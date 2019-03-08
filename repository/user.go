@@ -13,6 +13,11 @@ type User struct {
 	Role     int    `gorm:"DEFAULT:'0';not null"`
 }
 
+func (u *User) ReadForLogin() (isRecordNotFound bool) {
+	isRecordNotFound = db.GetConn().Debug().Where("Account = ? , Password = ?", u.Account,u.Password).Find(&u).RecordNotFound()
+	return
+}
+
 func (u *User) Add() (isSuccessful bool) {
 	if db.GetConn().Where("Account = ? ", u.Account).Find(&u).RecordNotFound() {
 		db.GetConn().Create(&u)

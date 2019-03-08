@@ -14,7 +14,8 @@ func controllerBind() {
 	// 系統
 	router.GET(s.Root+"/", sys.Index)
 	router.GET(s.Root+"/signup/", sys.SignUp)
-	router.GET(s.Root+"/login/", sys.Login)
+	router.GET(s.Root+"/signin/", sys.SignIn)
+	router.POST(s.Root+"/login/", sys.Login)
 	// 使用者
 	router.POST(s.Root+"/user/read/:account/", u.ReadByID)
 	router.POST(s.Root+"/user/add/", u.Add)

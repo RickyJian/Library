@@ -1,3 +1,3 @@
 function redirectLogin() {
-    window.location = "/library/login/"
+    window.location = "/library/signin/"
 }
